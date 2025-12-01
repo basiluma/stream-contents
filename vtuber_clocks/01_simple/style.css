@@ -1,0 +1,39 @@
+/* Simple Clock Style */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent; /* Essential for OBS */
+    /* Dark background for preview only - in OBS it will be transparent */
+    /* background-color: #222; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.clock-container {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent backing for readability */
+    padding: 20px 40px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.clock {
+    font-family: 'Roboto', sans-serif;
+    font-size: 80px;
+    color: #ffffff;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    letter-spacing: 2px;
+}
+
+.colon {
+    animation: blink 1s infinite;
+    margin: 0 5px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}

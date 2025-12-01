@@ -1,0 +1,42 @@
+/* Kawaii Clock Style */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.clock-container {
+    background: #fff0f5; /* Lavender blush */
+    padding: 15px 40px;
+    border-radius: 50px;
+    border: 5px solid #ff69b4; /* Hot pink */
+    box-shadow: 5px 5px 0px #ff1493;
+    position: relative;
+}
+
+.clock {
+    font-family: 'Fredoka One', cursive;
+    font-size: 70px;
+    color: #ff69b4;
+    -webkit-text-stroke: 2px #fff;
+}
+
+.decoration {
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    font-size: 40px;
+    color: #ffd700;
+    text-shadow: 2px 2px 0 #ffa500;
+    transform: rotate(15deg);
+    animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0) rotate(15deg); }
+    50% { transform: translateY(-10px) rotate(15deg); }
+}
