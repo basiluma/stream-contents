@@ -1,62 +1,91 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     margin: 0;
     padding: 0;
+    background: transparent;
+    height: 100vh;
     overflow: hidden;
-    background: #000; /* Use transparent or chroma key color for OBS */
+    perspective: 1000px; /* For 3D rotation */
 }
 
 .sakura-container {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 100%;
 }
 
-.sakura {
+.petal {
     position: absolute;
+    background-color: #ffd7e6;
+    border-radius: 150% 0 150% 0;
+    width: 15px;
+    height: 20px;
     top: -10%;
-    width: 20px;
-    height: 30px;
-    background: #ffb7c5;
-    border-radius: 100% 0 100% 0;
     opacity: 0.8;
+    box-shadow: 0 0 5px rgba(255, 183, 178, 0.5);
     animation: fall linear infinite;
 }
 
-/* Individual particle settings for randomness */
-.sakura:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
-.sakura:nth-child(2) { left: 20%; animation-duration: 12s; animation-delay: 2s; }
-.sakura:nth-child(3) { left: 30%; animation-duration: 10s; animation-delay: 4s; }
-.sakura:nth-child(4) { left: 40%; animation-duration: 15s; animation-delay: 1s; }
-.sakura:nth-child(5) { left: 50%; animation-duration: 9s; animation-delay: 3s; }
-.sakura:nth-child(6) { left: 60%; animation-duration: 11s; animation-delay: 5s; }
-.sakura:nth-child(7) { left: 70%; animation-duration: 14s; animation-delay: 2s; }
-.sakura:nth-child(8) { left: 80%; animation-duration: 10s; animation-delay: 0s; }
-.sakura:nth-child(9) { left: 90%; animation-duration: 13s; animation-delay: 4s; }
-.sakura:nth-child(10) { left: 5%; animation-duration: 11s; animation-delay: 6s; }
-.sakura:nth-child(11) { left: 15%; animation-duration: 9s; animation-delay: 1s; }
-.sakura:nth-child(12) { left: 25%; animation-duration: 12s; animation-delay: 3s; }
-.sakura:nth-child(13) { left: 35%; animation-duration: 14s; animation-delay: 5s; }
-.sakura:nth-child(14) { left: 75%; animation-duration: 10s; animation-delay: 2s; }
-.sakura:nth-child(15) { left: 85%; animation-duration: 13s; animation-delay: 0s; }
+/* Pseudo-element for depth/variation */
+.petal::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom right, rgba(255,255,255,0.8), transparent);
+    border-radius: inherit;
+}
 
 @keyframes fall {
     0% {
         top: -10%;
-        transform: rotate(0deg) translateX(0);
+        transform: translateX(0) rotateX(0) rotateY(0) rotateZ(0);
         opacity: 0;
     }
     10% {
         opacity: 1;
     }
     100% {
-        top: 100%;
-        transform: rotate(720deg) translateX(100px);
+        top: 110%;
+        transform: translateX(100px) rotateX(360deg) rotateY(180deg) rotateZ(360deg);
         opacity: 0;
     }
 }
+
+/* Randomize Durations and Delays using nth-child */
+.petal:nth-child(2n) { width: 12px; height: 16px; background-color: #ffc0cb; }
+.petal:nth-child(3n) { width: 18px; height: 24px; filter: blur(1px); } /* Foreground/Background blur */
+.petal:nth-child(4n) { filter: blur(2px); opacity: 0.6; } /* Far back */
+
+/* Generate randomized positions (simulated here with manual distribution for CSS) */
+/* In SCSS this would be a loop. Here we explicitly set some. */
+
+.p1 { left: 5%; animation-duration: 6s; animation-delay: 0s; }
+.p2 { left: 10%; animation-duration: 8s; animation-delay: 1s; }
+.p3 { left: 15%; animation-duration: 7s; animation-delay: 2s; }
+.p4 { left: 20%; animation-duration: 9s; animation-delay: 0.5s; }
+.p5 { left: 25%; animation-duration: 6.5s; animation-delay: 3s; }
+.p6 { left: 30%; animation-duration: 8.5s; animation-delay: 1.5s; }
+.p7 { left: 35%; animation-duration: 7.5s; animation-delay: 4s; }
+.p8 { left: 40%; animation-duration: 6s; animation-delay: 2.5s; }
+.p9 { left: 45%; animation-duration: 9.5s; animation-delay: 0s; }
+.p10 { left: 50%; animation-duration: 7s; animation-delay: 3.5s; }
+.p11 { left: 55%; animation-duration: 8s; animation-delay: 1s; }
+.p12 { left: 60%; animation-duration: 6s; animation-delay: 5s; }
+.p13 { left: 65%; animation-duration: 9s; animation-delay: 2s; }
+.p14 { left: 70%; animation-duration: 7.5s; animation-delay: 4.5s; }
+.p15 { left: 75%; animation-duration: 8.5s; animation-delay: 0.5s; }
+.p16 { left: 80%; animation-duration: 6.5s; animation-delay: 3s; }
+.p17 { left: 85%; animation-duration: 9.5s; animation-delay: 1.5s; }
+.p18 { left: 90%; animation-duration: 7s; animation-delay: 4s; }
+.p19 { left: 95%; animation-duration: 8s; animation-delay: 2.5s; }
+.p20 { left: 2%; animation-duration: 6s; animation-delay: 5.5s; }
+.p21 { left: 12%; animation-duration: 9s; animation-delay: 1.2s; }
+.p22 { left: 22%; animation-duration: 7.5s; animation-delay: 3.2s; }
+.p23 { left: 32%; animation-duration: 8.5s; animation-delay: 0.8s; }
+.p24 { left: 42%; animation-duration: 6.5s; animation-delay: 4.8s; }
+.p25 { left: 52%; animation-duration: 9.5s; animation-delay: 2.2s; }
+.p26 { left: 62%; animation-duration: 7s; animation-delay: 5.2s; }
+.p27 { left: 72%; animation-duration: 8s; animation-delay: 1.8s; }
+.p28 { left: 82%; animation-duration: 6s; animation-delay: 3.8s; }
+.p29 { left: 92%; animation-duration: 9s; animation-delay: 0.2s; }
+.p30 { left: 98%; animation-duration: 7.5s; animation-delay: 2.8s; }

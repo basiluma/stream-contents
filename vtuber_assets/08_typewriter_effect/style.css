@@ -1,44 +1,105 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
 
 body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: transparent; /* OBS透過用 */
-    margin: 0;
+    align-items: flex-end; /* Bottom for dialog box */
+    padding-bottom: 50px;
+    font-family: 'DotGothic16', sans-serif;
+}
+
+.rpg-box {
+    width: 80%;
+    height: 150px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 4px solid #fff;
+    border-radius: 8px;
+    box-shadow:
+        0 0 0 4px #000, /* Inner black stroke simulation */
+        0 0 0 8px #fff; /* Outer white stroke */
+    position: relative;
+    padding: 20px;
+    color: white;
+}
+
+.character-name {
+    position: absolute;
+    top: -25px;
+    left: 20px;
+    background: #000;
+    border: 2px solid #fff;
+    padding: 5px 15px;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+.text-area {
+    font-size: 1.5rem;
+    line-height: 1.5;
     overflow: hidden;
 }
 
-.typewriter h1 {
-    color: #fff;
-    font-family: monospace;
+.typewriter {
+    display: inline-block;
     overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: .15em solid orange; /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
-    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-    letter-spacing: .15em; /* Adjust as needed */
-    animation:
-        typing 3.5s steps(30, end),
-        blink-caret .5s step-end infinite;
-    text-shadow: 2px 2px 0 #000;
-    background: rgba(0,0,0,0.5); /* Optional: background to make text readable */
-    padding: 10px 20px;
-    border-radius: 4px;
+    margin: 0;
+    /* CSS only Typewriter is tricky with variable width fonts/text.
+       We simulate it with a revealing mask or steps.
+       For sale-quality assets without JS, we'll use a mask animation. */
+    animation: typing 4s steps(40, end), blink-caret .75s step-end infinite;
+    max-width: 100%;
 }
 
-/* The typing effect */
+.cursor {
+    animation: blink 1s infinite;
+}
+
+.next-arrow {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 1.5rem;
+    animation: bounce 1s infinite;
+}
+
 @keyframes typing {
     from { width: 0 }
     to { width: 100% }
 }
 
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: orange }
+@keyframes blink {
+    from, to { opacity: 1 }
+    50% { opacity: 0 }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
+
+/* Decorative corner pixels */
+.rpg-box::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: -8px;
+    width: 16px; height: 16px;
+    background: transparent;
+    border-top: 4px solid white;
+    border-left: 4px solid white;
+}
+.rpg-box::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; right: -8px;
+    width: 16px; height: 16px;
+    background: transparent;
+    border-bottom: 4px solid white;
+    border-right: 4px solid white;
 }

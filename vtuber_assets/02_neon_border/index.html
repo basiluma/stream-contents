@@ -3,18 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Border</title>
+    <title>Cyberpunk HUD Frame</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="border-container">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <div class="content-area">
-            <!-- Content Area: The border will wrap around this -->
+    <div class="hud-frame">
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+
+        <div class="line top-line"></div>
+        <div class="line bottom-line"></div>
+        <div class="line left-line"></div>
+        <div class="line right-line"></div>
+
+        <div class="status-box">
+            <span class="label">SYS.ONLINE</span>
+            <div class="bar-container">
+                <div class="bar"></div>
+            </div>
         </div>
+
+        <div class="deco-text top-deco">REC 00:00:00</div>
+        <div class="deco-text bottom-deco">STREAM_V.2.0</div>
     </div>
 </body>
 </html>
