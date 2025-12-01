@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: transparent; /* Transparent for OBS */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.border-container {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    /* Optional: semi-transparent background for the container */
+    /* background: rgba(0, 0, 0, 0.1); */
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    /* overflow: hidden; Removed to let glow shine */
+}
+
+/* Ensure lines stay within or on the border */
+.border-container span {
+    position: absolute;
+    display: block;
+}
+
+/* Top Line */
+.border-container span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: animate1 2s linear infinite;
+}
+
+@keyframes animate1 {
+    0% { left: -100%; }
+    50%, 100% { left: 100%; }
+}
+
+/* Right Line */
+.border-container span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: animate2 2s linear infinite;
+    animation-delay: 0.5s;
+}
+
+@keyframes animate2 {
+    0% { top: -100%; }
+    50%, 100% { top: 100%; }
+}
+
+/* Bottom Line */
+.border-container span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: animate3 2s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes animate3 {
+    0% { right: -100%; }
+    50%, 100% { right: 100%; }
+}
+
+/* Left Line */
+.border-container span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: animate4 2s linear infinite;
+    animation-delay: 1.5s;
+}
+
+@keyframes animate4 {
+    0% { bottom: -100%; }
+    50%, 100% { bottom: 100%; }
+}
+
+/* Optional: Add glow effect to lines */
+.border-container span {
+    box-shadow: 0 0 10px #03e9f4, 0 0 20px #03e9f4;
+}
