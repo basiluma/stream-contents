@@ -1,0 +1,42 @@
+/* Neon Clock Style */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.clock-container {
+    padding: 20px 40px;
+    border: 3px solid #0ff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #0ff, inset 0 0 20px #0ff;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.clock {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 80px;
+    color: #fff;
+    text-shadow:
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 40px #0ff,
+        0 0 80px #0ff;
+}
+
+.colon {
+    color: #f0f;
+    text-shadow:
+        0 0 10px #f0f,
+        0 0 20px #f0f;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}

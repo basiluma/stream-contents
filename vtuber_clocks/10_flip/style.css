@@ -1,0 +1,53 @@
+/* Flip Clock Style */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.clock-container {
+    padding: 20px;
+    background: transparent;
+}
+
+.clock {
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+}
+
+.card {
+    background: #1a1a1a;
+    color: #eee;
+    font-size: 60px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+    border: 1px solid #555; /* Added border for visibility against dark backgrounds */
+    margin: 0 5px;
+}
+
+/* Horizontal line to simulate split */
+.card::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(0,0,0,0.4);
+    transform: translateY(-50%);
+}
+
+.colon {
+    font-size: 60px;
+    color: #333;
+    margin: 0 5px;
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.5); /* Visibility check */
+}

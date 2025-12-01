@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Clock</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="clock-container">
+        <div class="clock">
+            <span class="hour">00</span><span class="label">時</span>
+            <span class="minute">00</span><span class="label">分</span>
+            <span class="second">00</span><span class="label">秒</span>
+        </div>
+    </div>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            document.querySelector('.hour').textContent = hours;
+            document.querySelector('.minute').textContent = minutes;
+            document.querySelector('.second').textContent = seconds;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>

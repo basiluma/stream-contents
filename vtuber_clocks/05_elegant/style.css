@@ -1,0 +1,28 @@
+/* Elegant Clock Style */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.clock-container {
+    padding: 20px 40px;
+    border-top: 2px solid #c5a059;
+    border-bottom: 2px solid #c5a059;
+    background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.6) 80%, transparent 100%);
+}
+
+.clock {
+    font-family: 'Cinzel', serif;
+    font-size: 80px;
+    font-weight: 700;
+    background: linear-gradient(to bottom, #fbf5b7 0%, #c5a059 50%, #8f6b29 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.8));
+}
