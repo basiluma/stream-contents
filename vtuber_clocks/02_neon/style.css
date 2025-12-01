@@ -1,0 +1,88 @@
+/* Synthwave Neon Clock */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+/* Background Grid Effect */
+.grid {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    bottom: -50%;
+    left: -50%;
+    background-image:
+        linear-gradient(rgba(255, 0, 255, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 0, 255, 0.3) 1px, transparent 1px);
+    background-size: 50px 50px;
+    transform: rotateX(60deg);
+    animation: moveGrid 5s linear infinite;
+    z-index: -1;
+    mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+@keyframes moveGrid {
+    0% { transform: rotateX(60deg) translateY(0); }
+    100% { transform: rotateX(60deg) translateY(50px); }
+}
+
+.clock-container {
+    padding: 30px 60px;
+    border: 4px solid #fff;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow:
+        0 0 10px #fff,
+        inset 0 0 10px #fff,
+        0 0 20px #f0f,
+        inset 0 0 20px #f0f,
+        0 0 40px #0ff,
+        inset 0 0 40px #0ff;
+    text-align: center;
+}
+
+.clock {
+    font-family: 'Monoton', cursive; /* Retro arcade style */
+    font-size: 80px;
+    color: #fff;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 20px #fff,
+        0 0 40px #f0f,
+        0 0 80px #f0f,
+        0 0 120px #f0f;
+    letter-spacing: 5px;
+}
+
+.colon {
+    color: #0ff;
+    text-shadow:
+        0 0 10px #fff,
+        0 0 20px #0ff,
+        0 0 40px #0ff;
+    animation: blink 1s infinite step-end;
+}
+
+.label {
+    font-family: 'Orbitron', sans-serif;
+    color: #0ff;
+    font-size: 20px;
+    margin-top: 10px;
+    letter-spacing: 10px;
+    text-shadow: 0 0 10px #0ff;
+    border-top: 2px solid #0ff;
+    padding-top: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}

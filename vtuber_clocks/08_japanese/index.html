@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Aesthetic Clock</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="clock-container">
+        <div class="sakura-container"></div>
+        <div class="clock">
+            <div class="time-col">
+                <span class="hour">00</span><span class="label">時</span>
+            </div>
+            <div class="time-col">
+                <span class="minute">00</span><span class="label">分</span>
+            </div>
+            <div class="time-col">
+                <span class="second">00</span><span class="label">秒</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            // Convert to Japanese/Full-width numbers for aesthetic (optional)
+            // But let's keep standard digits for readability, styled nicely.
+
+            document.querySelector('.hour').textContent = hours;
+            document.querySelector('.minute').textContent = minutes;
+            document.querySelector('.second').textContent = seconds;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Sakura Effect
+        const sakuraContainer = document.querySelector('.sakura-container');
+        function createSakura() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            petal.style.left = Math.random() * 100 + '%';
+            petal.style.animationDuration = Math.random() * 3 + 4 + 's';
+            petal.style.opacity = Math.random();
+            sakuraContainer.appendChild(petal);
+
+            setTimeout(() => {
+                petal.remove();
+            }, 7000);
+        }
+        setInterval(createSakura, 500);
+    </script>
+</body>
+</html>

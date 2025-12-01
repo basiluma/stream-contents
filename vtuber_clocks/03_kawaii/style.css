@@ -1,0 +1,80 @@
+/* Super Kawaii Clock Style */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.clock-container {
+    background: linear-gradient(135deg, #fff0f5 0%, #e6e6fa 100%);
+    padding: 20px 50px;
+    border-radius: 50px;
+    border: 8px solid #fff;
+    box-shadow:
+        0 0 0 8px #ffb7b2, /* Pastel red ring */
+        0 10px 20px rgba(0,0,0,0.1);
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.clock {
+    font-family: 'Fredoka One', cursive;
+    font-size: 80px;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4, #fad0c4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 3px #fff;
+    filter: drop-shadow(3px 3px 0px rgba(255, 105, 180, 0.5));
+}
+
+.colon {
+    -webkit-text-fill-color: #ffb7b2;
+    margin: 0 5px;
+    animation: bounce 1s infinite;
+    display: inline-block;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.decoration-bottom {
+    position: absolute;
+    bottom: -15px;
+    right: 30px;
+    background: #ff69b4;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 16px;
+    transform: rotate(-5deg);
+    border: 2px solid #fff;
+}
+
+/* Floating Icons */
+.floating-icon {
+    position: absolute;
+    font-size: 30px;
+    animation: floatAround 4s ease-in-out infinite;
+}
+
+.icon-1 { top: -20px; left: 10px; color: #ff6b6b; animation-delay: 0s; }
+.icon-2 { top: -25px; right: 20px; color: #feca57; animation-delay: 1s; }
+.icon-3 { bottom: -15px; left: 20px; color: #54a0ff; animation-delay: 2s; }
+.icon-4 { bottom: 10px; right: -25px; color: #1dd1a1; animation-delay: 3s; }
+
+@keyframes floatAround {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(5px, -10px) rotate(20deg); }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Flip Clock</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="clock-container">
+        <div class="clock">
+            <!-- Hours -->
+            <div class="flip-unit" id="hour-tens">
+                <div class="top">0</div><div class="bottom">0</div>
+                <div class="top-new">0</div><div class="bottom-new">0</div>
+            </div>
+            <div class="flip-unit" id="hour-ones">
+                <div class="top">0</div><div class="bottom">0</div>
+                <div class="top-new">0</div><div class="bottom-new">0</div>
+            </div>
+
+            <div class="colon">:</div>
+
+            <!-- Minutes -->
+            <div class="flip-unit" id="min-tens">
+                <div class="top">0</div><div class="bottom">0</div>
+                <div class="top-new">0</div><div class="bottom-new">0</div>
+            </div>
+            <div class="flip-unit" id="min-ones">
+                <div class="top">0</div><div class="bottom">0</div>
+                <div class="top-new">0</div><div class="bottom-new">0</div>
+            </div>
+
+            <div class="colon">:</div>
+
+            <!-- Seconds -->
+            <div class="flip-unit" id="sec-tens">
+                <div class="top">0</div><div class="bottom">0</div>
+                <div class="top-new">0</div><div class="bottom-new">0</div>
+            </div>
+            <div class="flip-unit" id="sec-ones">
+                <div class="top">0</div><div class="bottom">0</div>
+                <div class="top-new">0</div><div class="bottom-new">0</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const els = {
+            hT: document.getElementById('hour-tens'),
+            hO: document.getElementById('hour-ones'),
+            mT: document.getElementById('min-tens'),
+            mO: document.getElementById('min-ones'),
+            sT: document.getElementById('sec-tens'),
+            sO: document.getElementById('sec-ones'),
+        };
+
+        function flip(element, newValue) {
+            const top = element.querySelector('.top');
+            const bottom = element.querySelector('.bottom');
+            const topNew = element.querySelector('.top-new');
+            const bottomNew = element.querySelector('.bottom-new');
+
+            const currentValue = top.textContent;
+            if (currentValue === newValue) return;
+
+            topNew.textContent = newValue;
+            bottomNew.textContent = newValue;
+
+            element.classList.add('flipping');
+
+            setTimeout(() => {
+                top.textContent = newValue;
+                bottom.textContent = newValue;
+                element.classList.remove('flipping');
+            }, 500); // Match CSS duration
+        }
+
+        function updateTime() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+
+            flip(els.hT, h[0]);
+            flip(els.hO, h[1]);
+            flip(els.mT, m[0]);
+            flip(els.mO, m[1]);
+            flip(els.sT, s[0]);
+            flip(els.sO, s[1]);
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>

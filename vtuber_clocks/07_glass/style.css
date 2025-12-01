@@ -1,0 +1,90 @@
+/* Modern Glassmorphism Clock */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Animated Blobs */
+.background-blobs {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.8;
+}
+
+.blob-1 {
+    width: 300px;
+    height: 300px;
+    background: #ff00cc;
+    top: 50%;
+    left: 50%;
+    transform: translate(-100%, -100%);
+    animation: moveBlob1 8s infinite alternate;
+}
+
+.blob-2 {
+    width: 250px;
+    height: 250px;
+    background: #3333ff;
+    top: 50%;
+    left: 50%;
+    transform: translate(0, -50%);
+    animation: moveBlob2 10s infinite alternate;
+}
+
+.blob-3 {
+    width: 200px;
+    height: 200px;
+    background: #00ffcc;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    animation: moveBlob3 7s infinite alternate;
+}
+
+@keyframes moveBlob1 {
+    0% { transform: translate(-100%, -100%) scale(1); }
+    100% { transform: translate(-80%, -80%) scale(1.1); }
+}
+
+@keyframes moveBlob2 {
+    0% { transform: translate(0, -50%) scale(1); }
+    100% { transform: translate(20%, -30%) scale(0.9); }
+}
+
+@keyframes moveBlob3 {
+    0% { transform: translate(-50%, 0) scale(1); }
+    100% { transform: translate(-70%, 20%) scale(1.2); }
+}
+
+.clock-container {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 40px 80px;
+}
+
+.clock {
+    font-family: 'Poppins', sans-serif;
+    font-size: 80px;
+    font-weight: 500;
+    color: #fff;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    letter-spacing: 2px;
+}

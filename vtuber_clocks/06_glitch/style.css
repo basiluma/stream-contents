@@ -1,0 +1,99 @@
+/* Cyber Glitch Clock */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.clock-container {
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Digital Noise Background */
+.clock-container::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-radial-gradient(
+        #000 0 0.0001%,
+        #111 0 0.0002%
+    );
+    opacity: 0.1;
+    animation: noise 0.2s infinite;
+    z-index: -1;
+}
+
+@keyframes noise {
+    0% { transform: translate(0,0); }
+    10% { transform: translate(-5%,-5%); }
+    20% { transform: translate(-10%,5%); }
+    30% { transform: translate(5%,-10%); }
+    40% { transform: translate(-5%,15%); }
+    50% { transform: translate(-10%,5%); }
+    60% { transform: translate(15%,0); }
+    70% { transform: translate(0,10%); }
+    80% { transform: translate(-15%,0); }
+    90% { transform: translate(10%,5%); }
+    100% { transform: translate(5%,0); }
+}
+
+.clock {
+    font-family: 'Rubik Glitch', monospace;
+    font-size: 90px;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.clock::before,
+.clock::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.clock::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.clock::after {
+    left: -2px;
+    text-shadow: -2px 0 #00fff9;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 1s infinite linear alternate-reverse;
+}
+
+/* More intense glitch keyframes */
+@keyframes glitch-anim {
+    0% { clip: rect(30px, 9999px, 10px, 0); transform: skew(0.5deg); }
+    5% { clip: rect(80px, 9999px, 90px, 0); transform: skew(-0.5deg); }
+    /* ... shortened for brevity, browser interpolates ... */
+    100% { clip: rect(10px, 9999px, 40px, 0); transform: skew(0); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip: rect(10px, 9999px, 80px, 0); }
+    20% { clip: rect(90px, 9999px, 100px, 0); }
+    40% { clip: rect(30px, 9999px, 10px, 0); }
+    60% { clip: rect(60px, 9999px, 20px, 0); }
+    80% { clip: rect(20px, 9999px, 60px, 0); }
+    100% { clip: rect(50px, 9999px, 90px, 0); }
+}
