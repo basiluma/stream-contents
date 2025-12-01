@@ -2,15 +2,26 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Rotating Badge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Gold Coin Alert</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="badge-container">
-        <div class="badge">
-            <div class="side front">VIP</div>
-            <div class="side back">★</div>
+    <div class="alert-container">
+        <div class="coin-wrapper">
+            <div class="coin">
+                <div class="front">¥</div>
+                <div class="back">★</div>
+                <!-- Sides are simulated via thickness in CSS usually or pseudo elements -->
+                <div class="side-ring"></div>
+            </div>
         </div>
+        <div class="alert-text">
+            <span class="highlight">NEW DONATION!</span><br>
+            Thank you!
+        </div>
+        <div class="confetti c1"></div><div class="confetti c2"></div><div class="confetti c3"></div>
+        <div class="confetti c4"></div><div class="confetti c5"></div>
     </div>
 </body>
 </html>

@@ -1,100 +1,107 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 body {
     margin: 0;
     padding: 0;
-    background: transparent; /* Transparent for OBS */
+    background: transparent;
     height: 100vh;
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
 }
 
-.border-container {
+.hud-frame {
     position: relative;
-    width: 80%;
-    height: 80%;
-    /* Optional: semi-transparent background for the container */
-    /* background: rgba(0, 0, 0, 0.1); */
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    /* overflow: hidden; Removed to let glow shine */
+    width: 95%;
+    height: 90%;
+    /* Border is constructed via elements, not standard border */
+    box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.1);
 }
 
-/* Ensure lines stay within or on the border */
-.border-container span {
+:root {
+    --primary-color: #0ff;
+    --secondary-color: #f0f;
+    --bg-dark: rgba(0, 10, 20, 0.6);
+}
+
+/* Corners */
+.corner {
     position: absolute;
-    display: block;
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+    transition: all 0.3s ease;
 }
 
-/* Top Line */
-.border-container span:nth-child(1) {
-    top: 0;
-    left: -100%;
+.top-left { top: 0; left: 0; border-right: none; border-bottom: none; }
+.top-right { top: 0; right: 0; border-left: none; border-bottom: none; }
+.bottom-left { bottom: 0; left: 0; border-right: none; border-top: none; }
+.bottom-right { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+/* Lines with animation */
+.line {
+    position: absolute;
+    background: var(--primary-color);
+    box-shadow: 0 0 8px var(--primary-color);
+    opacity: 0.7;
+}
+
+.top-line { top: 0; left: 50%; transform: translateX(-50%); width: 0; height: 2px; animation: expandWidth 3s infinite alternate; }
+.bottom-line { bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 2px; animation: expandWidth 3s infinite alternate 1s; }
+.left-line { left: 0; top: 50%; transform: translateY(-50%); width: 2px; height: 0; animation: expandHeight 4s infinite alternate; }
+.right-line { right: 0; top: 50%; transform: translateY(-50%); width: 2px; height: 0; animation: expandHeight 4s infinite alternate 0.5s; }
+
+@keyframes expandWidth { 0% { width: 20%; opacity: 0.3; } 100% { width: 80%; opacity: 1; } }
+@keyframes expandHeight { 0% { height: 20%; opacity: 0.3; } 100% { height: 80%; opacity: 1; } }
+
+/* Status Box */
+.status-box {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.label {
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px var(--primary-color);
+    margin-bottom: 5px;
+    animation: blink 2s infinite;
+}
+
+.bar-container {
+    width: 100px;
+    height: 5px;
+    background: rgba(0, 255, 255, 0.2);
+    border: 1px solid var(--primary-color);
+}
+
+.bar {
     width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, #03e9f4);
-    animation: animate1 2s linear infinite;
-}
-
-@keyframes animate1 {
-    0% { left: -100%; }
-    50%, 100% { left: 100%; }
-}
-
-/* Right Line */
-.border-container span:nth-child(2) {
-    top: -100%;
-    right: 0;
-    width: 4px;
     height: 100%;
-    background: linear-gradient(180deg, transparent, #03e9f4);
-    animation: animate2 2s linear infinite;
-    animation-delay: 0.5s;
+    background: var(--primary-color);
+    box-shadow: 0 0 5px var(--primary-color);
+    animation: loadBar 3s infinite ease-in-out;
+    transform-origin: left;
 }
 
-@keyframes animate2 {
-    0% { top: -100%; }
-    50%, 100% { top: 100%; }
+@keyframes loadBar { 0%, 100% { transform: scaleX(0.8); } 50% { transform: scaleX(1); } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+/* Deco Text */
+.deco-text {
+    position: absolute;
+    color: var(--primary-color);
+    font-size: 0.7rem;
+    opacity: 0.8;
 }
 
-/* Bottom Line */
-.border-container span:nth-child(3) {
-    bottom: 0;
-    right: -100%;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(270deg, transparent, #03e9f4);
-    animation: animate3 2s linear infinite;
-    animation-delay: 1s;
-}
-
-@keyframes animate3 {
-    0% { right: -100%; }
-    50%, 100% { right: 100%; }
-}
-
-/* Left Line */
-.border-container span:nth-child(4) {
-    bottom: -100%;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent, #03e9f4);
-    animation: animate4 2s linear infinite;
-    animation-delay: 1.5s;
-}
-
-@keyframes animate4 {
-    0% { bottom: -100%; }
-    50%, 100% { bottom: 100%; }
-}
-
-/* Optional: Add glow effect to lines */
-.border-container span {
-    box-shadow: 0 0 10px #03e9f4, 0 0 20px #03e9f4;
-}
+.top-deco { top: 10px; left: 50px; }
+.bottom-deco { bottom: 10px; right: 50px; }

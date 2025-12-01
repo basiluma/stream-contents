@@ -1,59 +1,116 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 body {
     margin: 0;
+    padding: 0;
+    background: transparent;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: transparent;
-    perspective: 1000px;
     overflow: hidden;
+    font-family: 'Fredoka One', cursive;
 }
 
-.badge-container {
+.alert-container {
+    text-align: center;
+    position: relative;
+    /* Trigger animation class usually added via JS, here looping */
+}
+
+.coin-wrapper {
+    perspective: 1000px;
     width: 150px;
     height: 150px;
+    margin: 0 auto;
 }
 
-.badge {
+.coin {
     width: 100%;
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
-    animation: rotate 4s infinite linear;
+    animation: flipCoin 3s infinite linear;
 }
 
-.side {
+.front, .back {
     position: absolute;
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    backface-visibility: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 40px;
-    font-weight: bold;
-    color: #fff;
+    font-size: 80px;
+    color: #b8860b;
     border: 5px solid #ffd700;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    backface-visibility: hidden; /* Hide the back side when facing away */
+    background: radial-gradient(ellipse at center, #ffd700 0%, #fdb931 100%);
+    box-shadow: inset 0 0 10px #b8860b;
 }
 
-.front {
-    background: #e91e63;
+.front { transform: rotateY(0deg); }
+.back { transform: rotateY(180deg); color: #fff; }
+
+/* Simple side simulation */
+.coin::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    transform: translateZ(-10px);
+    background: #b8860b;
 }
 
-.back {
-    background: #2196f3;
-    transform: rotateY(180deg);
-}
-
-@keyframes rotate {
+@keyframes flipCoin {
     0% { transform: rotateY(0deg); }
     100% { transform: rotateY(360deg); }
 }
+
+.alert-text {
+    margin-top: 20px;
+    font-size: 2rem;
+    color: white;
+    text-shadow: 2px 2px 0 #000;
+    animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.highlight {
+    color: #ffd700;
+    font-size: 2.5rem;
+}
+
+@keyframes popUp {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Confetti */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: red;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+}
+
+.c1 { background: #f0f; animation: explode 1s infinite; animation-delay: 0.1s; }
+.c2 { background: #0ff; animation: explode 1s infinite; animation-delay: 0.2s; transform: rotate(45deg); }
+.c3 { background: #ff0; animation: explode 1s infinite; animation-delay: 0.3s; transform: rotate(90deg); }
+.c4 { background: #0f0; animation: explode 1s infinite; animation-delay: 0.4s; transform: rotate(135deg); }
+.c5 { background: #fff; animation: explode 1s infinite; animation-delay: 0.5s; transform: rotate(180deg); }
+
+@keyframes explode {
+    0% { transform: translate(0,0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--tx, 100px), var(--ty, -100px)) scale(0); opacity: 0; }
+}
+
+/* Pseudo-random directions manually for CSS */
+.c1 { --tx: -100px; --ty: -100px; }
+.c2 { --tx: 100px; --ty: -120px; }
+.c3 { --tx: -80px; --ty: -150px; }
+.c4 { --tx: 80px; --ty: -90px; }
+.c5 { --tx: 0px; --ty: -180px; }

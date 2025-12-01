@@ -5,9 +5,14 @@ def check_assets():
     assets = [
         "vtuber_assets/01_floating_bubbles/index.html",
         "vtuber_assets/02_neon_border/index.html",
+        "vtuber_assets/03_scrolling_text/index.html",
+        "vtuber_assets/04_pulse_circle/index.html",
         "vtuber_assets/05_glitch_text/index.html",
         "vtuber_assets/06_falling_sakura/index.html",
-        "vtuber_assets/09_bouncing_ball/index.html"
+        "vtuber_assets/07_gradient_background/index.html",
+        "vtuber_assets/08_typewriter_effect/index.html",
+        "vtuber_assets/09_bouncing_ball/index.html",
+        "vtuber_assets/10_rotating_badge/index.html"
     ]
 
     base_path = os.getcwd()
@@ -21,8 +26,11 @@ def check_assets():
             print(f"Checking {url}")
             try:
                 page.goto(url)
-                # Wait a bit for animation
-                page.wait_for_timeout(2000)
+                # Wait for animations to establish
+                page.wait_for_timeout(3000)
+
+                # Set viewport size to HD to verify responsiveness/layout
+                page.set_viewport_size({"width": 1920, "height": 1080})
 
                 screenshot_path = f"verification/{os.path.basename(os.path.dirname(asset))}.png"
                 page.screenshot(path=screenshot_path)
