@@ -1,0 +1,134 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.electric-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* Apply the distortion filter to everything inside */
+    filter: url(#lightning-filter) drop-shadow(0 0 10px #00eaff) drop-shadow(0 0 20px #00eaff);
+}
+
+.spark {
+    position: absolute;
+    background: #fff;
+    opacity: 0;
+    border-radius: 50%;
+}
+
+/*
+   We create different shapes of sparks.
+   Because of the turbulence filter, simple rectangles become jagged lightning bolts.
+*/
+
+/* Central Ring / Aura */
+.spark-1 {
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    transform: translate(-50%, -50%);
+    border: 5px solid #fff;
+    background: transparent;
+    animation: flash-1 2s infinite linear;
+}
+
+/* Horizontal bolt */
+.spark-2 {
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    height: 10px;
+    background: #fff;
+    animation: flash-random 3.5s infinite;
+    animation-delay: 0.5s;
+}
+
+/* Vertical bolt left */
+.spark-3 {
+    top: 10%;
+    left: 15%;
+    width: 8px;
+    height: 80%;
+    background: #fff;
+    animation: flash-random 4s infinite;
+    animation-delay: 1.2s;
+}
+
+/* Vertical bolt right */
+.spark-4 {
+    top: 15%;
+    right: 15%;
+    width: 8px;
+    height: 70%;
+    background: #fff;
+    animation: flash-random 2.8s infinite;
+    animation-delay: 0.1s;
+}
+
+/* Diagonal / Crossing bolt */
+.spark-5 {
+    top: 50%;
+    left: 50%;
+    width: 900px;
+    height: 15px;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: #fff;
+    animation: flash-burst 5s infinite;
+    animation-delay: 2s;
+}
+
+/* Another Ring */
+.spark-6 {
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    height: 700px;
+    transform: translate(-50%, -50%);
+    border: 8px solid #fff;
+    background: transparent;
+    animation: flash-1 0.5s infinite linear alternate;
+}
+
+/* Animations */
+
+@keyframes flash-1 {
+    0%, 100% { opacity: 0; stroke-width: 1px; }
+    5% { opacity: 1; stroke-width: 5px; }
+    10% { opacity: 0.5; }
+    15% { opacity: 0; }
+    20% { opacity: 0; }
+    25% { opacity: 0.8; }
+    30% { opacity: 0; }
+    50% { opacity: 0; }
+    55% { opacity: 0.6; }
+    60% { opacity: 0; }
+}
+
+@keyframes flash-random {
+    0% { opacity: 0; transform: scaleY(1); }
+    2% { opacity: 1; transform: scaleY(1.5); }
+    4% { opacity: 0; }
+    6% { opacity: 0.8; }
+    8% { opacity: 0; }
+    40% { opacity: 0; }
+    42% { opacity: 1; }
+    44% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@keyframes flash-burst {
+    0% { opacity: 0; width: 0; }
+    1% { opacity: 1; width: 100%; }
+    3% { opacity: 0; width: 100%; }
+    100% { opacity: 0; }
+}
