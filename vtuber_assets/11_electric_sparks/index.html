@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electric Sparks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="electric-container">
+        <!-- Multiple sparks for density -->
+        <div class="spark spark-1"></div>
+        <div class="spark spark-2"></div>
+        <div class="spark spark-3"></div>
+        <div class="spark spark-4"></div>
+        <div class="spark spark-5"></div>
+        <div class="spark spark-6"></div>
+    </div>
+
+    <!-- SVG Filter for the distortion effect -->
+    <svg style="position: absolute; width: 0; height: 0;">
+        <defs>
+            <filter id="lightning-filter">
+                <!-- Turbulence creates the noise -->
+                <feTurbulence type="fractalNoise" baseFrequency="0.01 0.2" numOctaves="3" seed="1">
+                    <!-- Animate seed or frequency to make it crackle -->
+                    <animate attributeName="seed" from="1" to="100" dur="1s" repeatCount="indefinite" />
+                </feTurbulence>
+                <!-- Displacement maps the noise to the source image -->
+                <feDisplacementMap in="SourceGraphic" scale="50" />
+            </filter>
+        </defs>
+    </svg>
+</body>
+</html>
